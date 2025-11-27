@@ -5,6 +5,7 @@ import useAxiosSequre from '../../../hooks/useAxiosSequre';
 import { FiEdit, FiTrash } from 'react-icons/fi';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const Myparcels = () => {
     const { user } = useAuth()
@@ -19,40 +20,40 @@ const Myparcels = () => {
         }
     })
 
-    const handelparcelDelete = id =>{
-          console.log(id)
+    const handelparcelDelete = id => {
+        console.log(id)
 
-          Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-    axiosSuqure.delete(`/parcels/${id}`)
-    .then(res =>{
-        console.log(res.data)
+                axiosSuqure.delete(`/parcels/${id}`)
+                    .then(res => {
+                        console.log(res.data)
 
-        if(res.data.deletedCount){
-            // refresh the data 
-            refetch()
-        
-            Swal.fire({
-      title: "Deleted!",
-      text: "Your Parcel request has been deleted.",
-      icon: "success"
-    });
+                        if (res.data.deletedCount) {
+                            // refresh the data 
+                            refetch()
 
-        }
-    })
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Parcel request has been deleted.",
+                                icon: "success"
+                            });
 
-    // 
-  }
-});
+                        }
+                    })
+
+                // 
+            }
+        });
     }
     return (
         <div>
@@ -66,33 +67,42 @@ const Myparcels = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Cost</th>
-                            <th>Payment status</th>
+                            <th>Payment </th>
+                            <th>Delivery status </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            parcels.map((parcel,index) =><tr key={parcel._id}>
-                            <th>{index + 1}</th>
-                            <td>{parcel.ParcelName}</td>
-                            <td>{parcel.cost}</td>
-                            <td>Blue</td>
-                            <td>
-                                <button className='btn btn-square hover:bg-primary'>
-                                    <FaMagnifyingGlass></FaMagnifyingGlass>
-                                </button>
-                                <button className='btn btn-square hover:bg-primary mx-2'>
-                                    <FiEdit></FiEdit>
-                                </button>
-                                <button
-                                onClick={() => handelparcelDelete(parcel._id)}
-                                 className='btn btn-square hover:bg-primary'>
-                                    <FiTrash></FiTrash>
-                                </button>
-                            </td>
-                        </tr>  )
+                            parcels.map((parcel, index) => <tr key={parcel._id}>
+                                <th>{index + 1}</th>
+                                <td>{parcel.ParcelName}</td>
+                                <td>{parcel.cost}</td>
+                                <td>
+                                    {
+                                        parcel.paymentStatus === 'paid' ? <span className='text-green-600 font-bold'>Paid</span> :
+                                            <Link to={`/dashboard/payment/${parcel._id}`}>
+                                                <button className='btn btn-sm btn-primary text-black  '>   Pay </button>
+                                            </Link>
+                                    }
+                                </td>
+                                <td>{parcel.deliveryStatus}</td>
+                                <td>
+                                    <button className='btn btn-square hover:bg-primary'>
+                                        <FaMagnifyingGlass></FaMagnifyingGlass>
+                                    </button>
+                                    <button className='btn btn-square hover:bg-primary mx-2'>
+                                        <FiEdit></FiEdit>
+                                    </button>
+                                    <button
+                                        onClick={() => handelparcelDelete(parcel._id)}
+                                        className='btn btn-square hover:bg-primary'>
+                                        <FiTrash></FiTrash>
+                                    </button>
+                                </td>
+                            </tr>)
                         }
-                        
+
                     </tbody>
                 </table>
             </div>

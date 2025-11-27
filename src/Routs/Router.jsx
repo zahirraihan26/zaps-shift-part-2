@@ -10,6 +10,11 @@ import Rider from "../Pages/Rader/Rider";
 import Sendpercel from "../Pages/SendPercel/Sendpercel";
 import DashboardLaout from "../Laouts/DashboardLaout";
 import Myparcels from "../Pages/Dashbord/Myparcels/Myparcels";
+import Payment from "../Pages/Dashbord/Payment/Payment";
+import PaymentSuccess from "../Pages/Dashbord/Payment/PaymentSuccess";
+// import Paymentcancel from "../Pages/Dashbord/Payment/Paymentcancel";
+import PaymentCanceled from "../Pages/Dashbord/Payment/PaymentCanceled";
+;
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +63,19 @@ export const router = createBrowserRouter([
         path:'my-parcels',
         Component:Myparcels
 
+      },
+      {
+        path:'payment/:parcelId',
+        Component:Payment
+      },
+      {
+        path:'payment-success',
+        Component:PaymentSuccess
+      },
+      {
+        path:'payment-concelled',
+        Component:PaymentCanceled
+       
       }
     ]
   }
