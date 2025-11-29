@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSequre from '../../hooks/useAxiosSequre';
 import useAuth from '../../hooks/useAuth';
@@ -14,6 +14,7 @@ const Sendpercel = () => {
 
     const { user } = useAuth()
     const axiosSecqute = useAxiosSequre()
+    const navigate = useNavigate()
 
 
     const serviceSenters = useLoaderData()
@@ -65,7 +66,7 @@ const Sendpercel = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "I agree"
+            confirmButtonText: "confirm"
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -73,13 +74,19 @@ const Sendpercel = () => {
                 axiosSecqute.post('/parcels', data)
                     .then(res => {
                         console.log(res.data)
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/my-parcels')
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "parcel has created . please proceed to payment",
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
                     })
 
-                // Swal.fire({
-                //   title: "Deleted!",
-                //   text: "Your file has been deleted.",
-                //   icon: "success"
-                // });
+                //
 
             }
         });
@@ -128,8 +135,8 @@ const Sendpercel = () => {
                         {/* sender name */}
                         <label className="label ">Sender Name</label>
                         <input type="text"{...register('SenderName')}
-                        defaultValue={user?.displayName}
-                         className="input w-full"
+                            defaultValue={user?.displayName}
+                            className="input w-full"
                             placeholder="Sender Name" />
 
                         {/* sender Email */}

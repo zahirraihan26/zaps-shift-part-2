@@ -55,6 +55,20 @@ const Myparcels = () => {
             }
         });
     }
+
+    const handelPayment = async(parcel)=>{
+       const paymentInfo ={
+        cost:parcel.cost,
+        parcelId:parcel._id,
+        senderEmail:parcel.senderEmail,
+        parcelName:parcel.ParcelName
+       }
+     
+       const res =await axiosSuqure.post('/payment-checkout-session',paymentInfo)
+         console.log(res.data.url);
+         window.location.assign(res.data.url) 
+    }
+
     return (
         <div>
             <h2>All of my parcels{parcels.length}</h2>
@@ -81,9 +95,13 @@ const Myparcels = () => {
                                 <td>
                                     {
                                         parcel.paymentStatus === 'paid' ? <span className='text-green-600 font-bold'>Paid</span> :
-                                            <Link to={`/dashboard/payment/${parcel._id}`}>
-                                                <button className='btn btn-sm btn-primary text-black  '>   Pay </button>
-                                            </Link>
+                                           
+                                         <button onClick={()=>handelPayment(parcel)} className='btn btn-sm btn-primary text-black  '>   Pay </button>
+                                             
+                                        //  old version 
+                                            // <Link to={`/dashboard/payment/${parcel._id}`}>
+                                            //     <button className='btn btn-sm btn-primary text-black  '>   Pay </button>
+                                            // </Link>
                                     }
                                 </td>
                                 <td>{parcel.deliveryStatus}</td>
