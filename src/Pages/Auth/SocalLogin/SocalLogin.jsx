@@ -1,9 +1,11 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
+import useAxiosSequre from '../../../hooks/useAxiosSequre';
 
 const SocalLogin = () => {
     const { signInGoogle } = useAuth()
+    const axiosSuqure =useAxiosSequre()
     const location =useLocation()
     const navigate =useNavigate()
 
@@ -12,6 +14,20 @@ const SocalLogin = () => {
            .then(result =>{
             console.log (result.user)
             navigate(location.state || '/')
+
+              // creat user in the database
+                    const userInfo={
+                        email:result.user.email,
+                       displayName:result.user.displayName,
+                       photoURL :result.user.photoURL
+                    }
+
+                    axiosSuqure.post('/users',userInfo)
+                    .then(res =>{
+                        if(res.data.insertedId){
+                            console.log("user hasbenn stored in database")
+                        }
+                    })
            })
            .catch(error=>{
             console.log (error)

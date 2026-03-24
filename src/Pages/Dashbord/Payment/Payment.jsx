@@ -20,7 +20,7 @@ const Payment = () => {
         const paymentInfo ={
             cost:parcel.cost,
             parcelId:parcel._id,
-            senderEmail:parcel.senderEmail,
+            senderEmail: parcel.SenderEmail,
             parcelName:parcel.ParcelName
         }
 
@@ -33,7 +33,7 @@ const Payment = () => {
     if (isLoading) {
         return <span>loading....</span>
     }
-
+    // console.log("parcel:", parcel);
 
     return (
         <div>

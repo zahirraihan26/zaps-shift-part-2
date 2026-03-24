@@ -60,7 +60,7 @@ const Myparcels = () => {
        const paymentInfo ={
         cost:parcel.cost,
         parcelId:parcel._id,
-        senderEmail:parcel.senderEmail,
+        senderEmail: parcel.SenderEmail,
         parcelName:parcel.ParcelName
        }
      

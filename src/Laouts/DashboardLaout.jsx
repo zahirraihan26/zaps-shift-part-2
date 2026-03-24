@@ -1,58 +1,130 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
+import { FaMotorcycle, FaRegCreditCard } from 'react-icons/fa6';
+import { FiHome, FiSettings, FiMenu, FiX, FiUser } from 'react-icons/fi';
 import { Link, NavLink, Outlet } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 const DashboardLaout = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const { user } = useAuth();
+
+    const navItems = [
+        { to: '/', icon: <FiHome size={18} />, label: 'Homepage', end: true },
+        { to: '/dashboard/my-parcels', icon: <CiDeliveryTruck size={18} />, label: 'My Parcels' },
+        { to: '/dashboard/payment-history', icon: <FaRegCreditCard size={18} />, label: 'Payment History' },
+        { to: '/dashboard/approve-riders', icon: <FaMotorcycle size={18} />, label: 'Approve Riders' },
+    ];
+
+    const navItemClass = ({ isActive }) =>
+        `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+            isActive
+                ? 'bg-[var(--lime)] text-[var(--teal)] shadow-[0_4px_12px_rgba(202,235,102,0.4)]'
+                : 'text-white/60 hover:bg-white/10 hover:text-white'
+        }`;
+
     return (
-        <div className="drawer lg:drawer-open">
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
-                {/* Navbar */}
-                <nav className="navbar w-full bg-base-300">
-                    <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                        {/* Sidebar toggle icon */}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
-                    </label>
-                    <div className="px-4">Zap shift dashboard </div>
-                </nav>
-                {/* Page content here */}
-                <Outlet></Outlet>
-              
-            </div>
+        <div className="min-h-screen flex bg-[#f0f5eb]">
 
-            <div className="drawer-side is-drawer-close:overflow-visible">
-                <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-                    {/* Sidebar content here */}
-                    <ul className="menu w-full grow">
-                        {/* List item */}
-                        <li>
-                            <Link to='/' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                                {/* Home icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                                <span className="is-drawer-close:hidden">Homepage</span>
-                            </Link>
-                        </li>
+            {/* Sidebar overlay (mobile) */}
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/40 z-30 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
 
-                        {/* our dash board links */}
-
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Myparcels"  to='/dashboard/my-parcels'>
-                            <CiDeliveryTruck></CiDeliveryTruck>
-                            <span className="is-drawer-close:hidden">My parcels</span>
-                             </NavLink>
-                        </li>
-
-                        {/* List item */}
-                        <li>
-                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                {/* Settings icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                                <span className="is-drawer-close:hidden">Settings</span>
-                            </button>
-                        </li>
-                    </ul>
+            {/* Sidebar */}
+            <aside
+                className={`fixed z-40 top-0 left-0 h-full w-64 flex flex-col transition-transform duration-300 ease-out
+                    ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+                    lg:translate-x-0 lg:static lg:flex`}
+                style={{ background: 'linear-gradient(160deg, var(--teal) 0%, #032b30 100%)' }}
+            >
+                {/* Logo area */}
+                <div className="flex items-center justify-between px-5 py-5 border-b border-white/10">
+                    <Link to="/" className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-[var(--lime)] flex items-center justify-center">
+                            <span className="text-[var(--teal)] font-black text-sm">Z</span>
+                        </div>
+                        <span className="text-white font-extrabold text-lg tracking-tight">ZapShift</span>
+                    </Link>
+                    <button
+                        className="lg:hidden text-white/60 hover:text-white transition"
+                        onClick={() => setSidebarOpen(false)}
+                    >
+                        <FiX size={20} />
+                    </button>
                 </div>
+
+                {/* User profile mini */}
+                {user && (
+                    <div className="px-5 py-4 border-b border-white/8">
+                        <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-full border-2 border-[var(--lime)]/50 overflow-hidden bg-[var(--teal)]">
+                                {user.photoURL
+                                    ? <img src={user.photoURL} alt="" className="w-full h-full object-cover" />
+                                    : <div className="w-full h-full flex items-center justify-center text-[var(--lime)]"><FiUser size={16} /></div>
+                                }
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-white font-semibold text-sm truncate">{user.displayName || 'User'}</p>
+                                <p className="text-white/40 text-xs truncate">{user.email}</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Nav */}
+                <nav className="flex-1 px-4 py-5 flex flex-col gap-1 overflow-y-auto">
+                    <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest px-4 mb-2">Navigation</p>
+                    {navItems.map(item => (
+                        <NavLink key={item.to} to={item.to} end={item.end} className={navItemClass}>
+                            {item.icon}
+                            {item.label}
+                        </NavLink>
+                    ))}
+
+                    <div className="h-px bg-white/10 my-4" />
+                    <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest px-4 mb-2">Account</p>
+                    <button className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200">
+                        <FiSettings size={18} />
+                        Settings
+                    </button>
+                </nav>
+
+                {/* Footer badge */}
+                <div className="px-5 py-4 border-t border-white/8">
+                    <div className="bg-[var(--lime)]/10 border border-[var(--lime)]/20 rounded-xl px-4 py-3">
+                        <p className="text-[var(--lime)] text-xs font-bold">⚡ ZapShift Dashboard</p>
+                        <p className="text-white/40 text-[11px] mt-0.5">All your deliveries, in one place.</p>
+                    </div>
+                </div>
+            </aside>
+
+            {/* Main content */}
+            <div className="flex-1 flex flex-col min-w-0">
+                {/* Top nav */}
+                <header className="glass border-b border-[var(--lime)]/15 sticky top-0 z-20">
+                    <div className="flex items-center gap-4 px-4 sm:px-6 h-14">
+                        <button
+                            className="lg:hidden p-2 text-[var(--teal)] hover:bg-[var(--lime)]/20 rounded-xl transition"
+                            onClick={() => setSidebarOpen(true)}
+                        >
+                            <FiMenu size={20} />
+                        </button>
+                        <h1 className="font-extrabold text-[var(--teal)] text-base">Dashboard</h1>
+                        <div className="ml-auto flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse-glow" />
+                            <span className="text-xs text-[var(--teal)]/60 font-medium">Live</span>
+                        </div>
+                    </div>
+                </header>
+
+                {/* Page content */}
+                <main className="flex-1 p-4 sm:p-6 overflow-auto">
+                    <Outlet />
+                </main>
             </div>
         </div>
     );
