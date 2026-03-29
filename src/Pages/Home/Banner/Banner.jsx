@@ -34,30 +34,33 @@ const Banner = () => {
     return (
         <section className="relative overflow-hidden min-h-[90vh] flex flex-col">
             {/* Background decoration */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[var(--lime)]/15 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[var(--teal)]/8 blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-[var(--lime)]/20 blur-[100px] animate-blob" />
+                <div className="absolute top-40 -left-20 w-80 h-80 rounded-full bg-[var(--teal)]/10 blur-[90px] animate-blob animation-delay-2000" />
+                <div className="absolute -bottom-32 left-1/3 w-80 h-80 rounded-full bg-[var(--lime)]/15 blur-[100px] animate-blob animation-delay-4000" />
+            </div>
 
             {/* Main hero */}
-            <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
 
                 {/* Left: Text */}
                 <div className="flex flex-col gap-6 animate-fade-up">
                     <span className="section-tag">⚡ Fast & Reliable Delivery</span>
 
-                    <h1 className="font-extrabold leading-[1.1] text-[clamp(2.4rem,5vw,3.8rem)] text-[var(--teal)]">
+                    <h1 className="font-black leading-[1.1] text-[clamp(2.5rem,5.5vw,4.2rem)] text-[var(--teal)] tracking-tight">
                         Ship Smarter,{' '}
-                        <span className="relative inline-block">
-                            <span className="text-gradient-lime">Deliver Faster</span>
-                            <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
-                                <path d="M0 3 Q100 0 200 3" stroke="#CAEB66" strokeWidth="3" strokeLinecap="round" />
+                        <span className="relative inline-block z-10">
+                            <span className="text-gradient-lime drop-shadow-sm">Deliver Faster</span>
+                            <svg className="absolute -bottom-2 left-0 w-full drop-shadow-md z-[-1]" height="10" viewBox="0 0 200 10" fill="none" preserveAspectRatio="none">
+                                <path d="M0 5 Q100 0 200 5 Q100 10 0 5" fill="var(--lime)" opacity="0.6" />
                             </svg>
                         </span>
                         {' '}with ZapShift
                     </h1>
 
-                    <p className="text-[var(--teal)]/65 text-lg leading-relaxed max-w-lg">
+                    <p className="text-[var(--teal)]/70 text-[1.1rem] leading-relaxed max-w-lg font-medium drop-shadow-sm">
                         From personal packages to bulk business shipments — we deliver across
-                        <strong className="text-[var(--teal)]"> 64 districts</strong> of Bangladesh with real-time tracking and zero hassle.
+                        <strong className="text-[var(--teal)] font-bold bg-[var(--lime)]/20 px-2 py-0.5 rounded ml-1">64 districts</strong> of Bangladesh with real-time tracking and zero hassle.
                     </p>
 
                     {/* CTAs */}
@@ -90,8 +93,8 @@ const Banner = () => {
                     <div className="absolute w-52 h-52 rounded-full border border-[var(--teal)]/15" />
 
                     {/* Image switcher */}
-                    <div className="relative w-full max-w-sm lg:max-w-md animate-float">
-                        <div className="rounded-[var(--radius-2xl)] overflow-hidden premium-card shadow-[0_24px_64px_rgba(3,55,61,0.18)]">
+                    <div className="relative w-full max-w-sm lg:max-w-md animate-float z-10">
+                        <div className="rounded-[var(--radius-2xl)] overflow-hidden premium-card shadow-[0_30px_80px_rgba(3,55,61,0.2)] border-2 border-[var(--lime)]/20 backdrop-blur-xl">
                             {images.map((img, i) => (
                                 <img
                                     key={i}
@@ -116,9 +119,11 @@ const Banner = () => {
                         </div>
 
                         {/* Floating badge */}
-                        <div className="absolute -top-4 -right-4 glass rounded-2xl px-4 py-2.5 shadow-lg animate-pulse-glow">
-                            <p className="text-xs font-bold text-[var(--teal)]">⚡ Delivering Now</p>
-                            <p className="text-[11px] text-[var(--teal)]/60">1,240+ active parcels</p>
+                        <div className="absolute -top-4 -right-4 glass rounded-2xl px-5 py-3 shadow-[0_8px_30px_rgba(202,235,102,0.3)] animate-pulse-glow z-20 border-[var(--lime)]/50 backdrop-blur-2xl">
+                            <p className="text-[13px] font-extrabold text-[var(--teal)] flex items-center gap-1">
+                                <span className="text-xl">⚡</span> Delivering Now
+                            </p>
+                            <p className="text-[11px] font-bold text-[var(--teal)]/60 mt-0.5 ml-6 tracking-wide">1,240+ active parcels</p>
                         </div>
                     </div>
                 </div>

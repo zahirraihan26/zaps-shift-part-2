@@ -21,12 +21,12 @@ const Navbar = () => {
     };
 
     const navLinkClass = ({ isActive }) =>
-        `relative px-1 py-0.5 font-semibold text-sm transition-colors duration-200 
-         after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:rounded-full
+        `relative px-1 py-0.5 font-bold text-[15px] tracking-wide transition-all duration-300 
+         after:content-[''] after:absolute after:-bottom-[6px] after:left-0 after:h-[3px] after:rounded-t-md
          after:transition-all after:duration-300
          ${isActive
-            ? 'text-[var(--teal)] after:w-full after:bg-[var(--lime)]'
-            : 'text-[var(--teal)]/70 hover:text-[var(--teal)] after:w-0 hover:after:w-full after:bg-[var(--lime)]'
+            ? 'text-[var(--teal)] drop-shadow-sm after:w-full after:bg-[var(--lime)] after:shadow-[0_-4px_12px_rgba(202,235,102,0.7)]'
+            : 'text-[var(--teal)]/60 hover:text-[var(--teal)] hover:drop-shadow-sm after:w-0 hover:after:w-full hover:after:bg-[var(--lime)]/60'
          }`;
 
     const links = [
@@ -38,9 +38,9 @@ const Navbar = () => {
 
     return (
         <header
-            className={`nav-sticky w-full transition-all duration-300 ${scrolled
-                ? 'glass shadow-[0_2px_24px_rgba(3,55,61,0.12)]'
-                : 'bg-[#f8faf4]/80 backdrop-blur-md'
+            className={`nav-sticky w-full transition-all duration-500 border-b border-transparent ${scrolled
+                ? 'glass shadow-[0_4px_30px_rgba(3,55,61,0.06)] !border-[var(--lime)]/30'
+                : 'bg-[#f8faf4]/40 backdrop-blur-xl'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
