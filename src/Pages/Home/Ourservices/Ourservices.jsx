@@ -45,8 +45,9 @@ const Ourservices = () => {
                 style={{ background: 'linear-gradient(135deg, var(--teal) 0%, #055a63 60%, #032b30 100%)' }}
             >
                 {/* Decorative orbs */}
-                <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-[var(--lime)]/10 blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-[var(--lime)]/8 blur-3xl pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[var(--lime)]/10 blur-[120px] pointer-events-none animate-blob" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#055a63]/50 blur-[100px] pointer-events-none animate-blob animation-delay-2000" />
+                <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] rounded-full bg-[var(--lime)]/5 blur-[90px] pointer-events-none animate-blob animation-delay-4000" />
 
                 {/* Heading */}
                 <div className="text-center mb-14 relative z-10">
@@ -70,9 +71,9 @@ const Ourservices = () => {
                             <div
                                 key={index}
                                 onClick={() => setActive(isActive ? null : index)}
-                                className={`cursor-pointer rounded-2xl p-6 border transition-all duration-300 group ${isActive
-                                    ? 'bg-[var(--lime)] border-[var(--lime)] text-[var(--teal)] shadow-[0_8px_32px_rgba(202,235,102,0.4)] scale-[1.03]'
-                                    : 'bg-white/7 border-white/10 text-white hover:border-[var(--lime)]/50 hover:bg-white/12 hover:scale-[1.02]'
+                                className={`cursor-pointer rounded-2xl p-6 border backdrop-blur-md transition-all duration-500 group relative overflow-hidden ${isActive
+                                    ? 'bg-[var(--lime)] border-[var(--lime)] text-[var(--teal)] shadow-[0_12px_40px_rgba(202,235,102,0.5)] scale-[1.03]'
+                                    : 'bg-white/5 border-white/10 text-white hover:border-[var(--lime)]/60 hover:bg-white/10 hover:shadow-[0_8px_32px_rgba(202,235,102,0.15)] hover:-translate-y-1'
                                     }`}
                             >
                                 {/* Icon */}

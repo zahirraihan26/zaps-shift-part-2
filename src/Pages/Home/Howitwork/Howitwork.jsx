@@ -59,7 +59,7 @@ const Howitwork = () => {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className="premium-card group cursor-pointer"
+                            className="premium-card group cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(3,55,61,0.12)] border border-[var(--lime)]/10 hover:border-[var(--teal)]/20"
                             data-aos="fade-up"
                             data-aos-delay={service.delay}
                         >
@@ -69,10 +69,10 @@ const Howitwork = () => {
                             <div className="p-6 flex flex-col gap-4">
                                 {/* Step number + icon */}
                                 <div className="flex items-center justify-between">
-                                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 border border-[var(--teal)]/5`}>
                                         {service.icon}
                                     </div>
-                                    <span className="text-4xl font-black text-[var(--teal)]/8 group-hover:text-[var(--lime)]/40 transition-colors duration-300 select-none">
+                                    <span className="text-5xl font-black text-[var(--teal)]/5 group-hover:text-[var(--lime)]/30 transition-colors duration-500 select-none">
                                         {String(index + 1).padStart(2, '0')}
                                     </span>
                                 </div>
