@@ -17,9 +17,9 @@ const DashboardLaout = () => {
     ];
 
     const navItemClass = ({ isActive }) =>
-        `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+        `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
             isActive
-                ? 'bg-[var(--lime)] text-[var(--teal)] shadow-[0_4px_12px_rgba(202,235,102,0.4)]'
+                ? 'sidebar-item-active'
                 : 'text-white/60 hover:bg-white/10 hover:text-white'
         }`;
 
@@ -114,9 +114,17 @@ const DashboardLaout = () => {
                             <FiMenu size={20} />
                         </button>
                         <h1 className="font-extrabold text-[var(--teal)] text-base">Dashboard</h1>
-                        <div className="ml-auto flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse-glow" />
-                            <span className="text-xs text-[var(--teal)]/60 font-medium">Live</span>
+                        <div className="ml-auto flex items-center gap-4">
+                            <div className="flex flex-col items-end">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse-glow" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-[var(--teal)]/40">Network Live</span>
+                                </div>
+                            </div>
+                            <div className="h-8 w-px bg-[var(--teal)]/10 mx-2" />
+                            <button className="w-9 h-9 rounded-xl glass border-[var(--lime)]/30 flex items-center justify-center text-[var(--teal)] hover:bg-[var(--lime)]/20 transition-all">
+                                <FiSettings size={18} />
+                            </button>
                         </div>
                     </div>
                 </header>

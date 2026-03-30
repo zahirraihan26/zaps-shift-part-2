@@ -273,3 +273,74 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 8px 32px 0 rgba(3, 55, 61, 0.05);
 }
+
+/* ======= DASHBOARD SPECIFIC ======= */
+.premium-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.premium-table thead th {
+  background: transparent;
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  border: none;
+}
+
+.premium-table tbody tr {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(3, 55, 61, 0.03);
+  transition: var(--transition);
+}
+
+.premium-table tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(3, 55, 61, 0.08);
+}
+
+.premium-table tbody td {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: var(--teal);
+  border: none;
+}
+
+.premium-table tbody td:first-child { border-radius: 12px 0 0 12px; }
+.premium-table tbody td:last-child { border-radius: 0 12px 12px 0; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  gap: 6px;
+}
+
+.status-paid { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
+.status-pending { background: #FFF3E0; color: #EF6C00; border: 1px solid #FFE0B2; }
+.status-delivered { background: #F1F8E9; color: #558B2F; border: 1px solid #C5E1A5; }
+.status-shippped { background: #E3F2FD; color: #1565C0; border: 1px solid #BBDEFB; }
+.status-returned { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; }
+
+.dashboard-card {
+  padding: 24px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid rgba(3, 55, 61, 0.05);
+  box-shadow: 0 4px 12px rgba(3, 55, 61, 0.04);
+}
+
+.sidebar-item-active {
+  background: var(--lime);
+  color: var(--teal) !important;
+  box-shadow: 0 4px 12px rgba(202, 235, 102, 0.35);
+}
