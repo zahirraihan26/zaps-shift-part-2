@@ -46,10 +46,10 @@ const AuthLaout = () => {
                     </div>
 
                     {/* Features */}
-                    <div className="relative z-10 mt-6 flex flex-col gap-3 px-10 w-full">
+                    <div className="relative z-10 mt-6 flex flex-col gap-4 px-10 w-full mb-8">
                         {features.map((f, i) => (
-                            <div key={i} className="flex items-center gap-3 text-white/80 text-sm">
-                                <span className="w-7 h-7 rounded-lg bg-[var(--lime)]/20 flex items-center justify-center text-[var(--lime)] flex-shrink-0">
+                            <div key={i} className="glass-dark px-5 py-4 rounded-2xl flex items-center gap-4 text-white/90 text-sm font-medium border border-white/10 shadow-lg transform transition hover:-translate-y-1 hover:border-[var(--lime)]/30 hover:shadow-2xl hover:shadow-[var(--lime)]/10 cursor-pointer">
+                                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--lime)] to-[var(--lime-dark)] flex items-center justify-center text-[var(--teal)] flex-shrink-0 shadow-inner">
                                     {f.icon}
                                 </span>
                                 {f.text}

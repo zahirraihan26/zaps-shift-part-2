@@ -42,8 +42,8 @@ const Brands = () => {
                 >
                     {brandsLogos.map((logo, index) => (
                         <SwiperSlide key={index}>
-                            <div className="flex items-center justify-center py-3 px-4 grayscale hover:grayscale-0 opacity-50 hover:opacity-100 transition-all duration-500 hover:drop-shadow-[0_0_12px_rgba(202,235,102,0.6)] hover:scale-110 cursor-pointer">
-                                <img src={logo} alt={`brand-${index}`} className="max-h-12 object-contain" />
+                            <div className="flex items-center justify-center py-4 px-6 grayscale hover:grayscale-0 opacity-40 hover:opacity-100 transition-all duration-500 hover:drop-shadow-[0_0_20px_rgba(202,235,102,0.8)] hover:scale-110 cursor-pointer bg-white/5 rounded-2xl hover:bg-white/40">
+                                <img src={logo} alt={`brand-${index}`} className="max-h-14 object-contain" />
                             </div>
                         </SwiperSlide>
                     ))}

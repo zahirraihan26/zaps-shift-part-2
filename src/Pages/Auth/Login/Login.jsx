@@ -20,15 +20,18 @@ const Login = () => {
     };
 
     return (
-        <div className="premium-card p-8 sm:p-10">
+        <div className="premium-card p-8 sm:p-10 w-full max-w-md mx-auto relative group overflow-visible my-12 animate-fade-up">
+             {/* Decorative lime accent */}
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--lime)]/15 rounded-bl-[60px] pointer-events-none transition-all duration-500 group-hover:bg-[var(--lime)]/25 group-hover:w-40 group-hover:h-40 group-hover:rounded-bl-[80px] animate-pulse-glow" />
+
             {/* Heading */}
-            <div className="mb-8">
+            <div className="mb-8 relative z-10">
                 <span className="section-tag">👋 Welcome back</span>
                 <h1 className="text-2xl font-extrabold text-[var(--teal)] mt-3">Sign in to ZapShift</h1>
                 <p className="text-[var(--teal)]/55 text-sm mt-1">Enter your credentials to access your dashboard.</p>
             </div>
 
-            <form onSubmit={handleSubmit(handelLogin)} className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit(handelLogin)} className="flex flex-col gap-5 relative z-10">
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
                     <label className="text-sm font-semibold text-[var(--teal)]">Email Address</label>
@@ -81,15 +84,17 @@ const Login = () => {
             </form>
 
             {/* Divider */}
-            <div className="flex items-center gap-4 my-6">
+            <div className="flex items-center gap-4 my-6 relative z-10">
                 <div className="flex-1 h-px bg-[var(--teal)]/10" />
                 <span className="text-xs font-medium text-[var(--teal)]/40">or continue with</span>
                 <div className="flex-1 h-px bg-[var(--teal)]/10" />
             </div>
 
-            <SocalLogin />
+            <div className="relative z-10">
+                <SocalLogin />
+            </div>
 
-            <p className="text-center text-sm text-[var(--teal)]/55 mt-6">
+            <p className="text-center text-sm text-[var(--teal)]/55 mt-6 relative z-10">
                 New to ZapShift?{' '}
                 <Link state={location.state} to="/register" className="font-bold text-[var(--teal)] hover:text-[var(--lime-dark)] transition-colors">
                     Create an account →

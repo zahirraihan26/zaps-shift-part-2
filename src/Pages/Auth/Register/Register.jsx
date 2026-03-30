@@ -59,9 +59,9 @@ const Register = () => {
     };
 
     return (
-        <div className="premium-card p-8 sm:p-10 w-full max-w-md mx-auto relative group overflow-visible my-12">
+        <div className="premium-card p-8 sm:p-10 w-full max-w-md mx-auto relative group overflow-visible my-12 animate-fade-up">
              {/* Decorative lime accent */}
-             <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--lime)]/15 rounded-bl-[40px] pointer-events-none transition-all duration-300 group-hover:bg-[var(--lime)]/25" />
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--lime)]/15 rounded-bl-[60px] pointer-events-none transition-all duration-500 group-hover:bg-[var(--lime)]/25 group-hover:w-40 group-hover:h-40 group-hover:rounded-bl-[80px] animate-pulse-glow" />
 
             {/* Heading */}
             <div className="mb-8 relative z-10">
